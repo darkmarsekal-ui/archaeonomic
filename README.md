@@ -1,4 +1,4 @@
-# 🎟️ Cagarnomics
+# 🎟️ Archaeonomic
 
 Kalkulator nilai ekonomi cagar budaya berbasis web — tanpa server, tanpa build step, langsung jalan sebagai *static site* di GitHub Pages.
 
@@ -24,7 +24,7 @@ Semua kalkulasi berjalan **100% di browser** (client-side JavaScript) — tidak 
 ```bash
 git init
 git add .
-git commit -m "Cagarnomics: kalkulator valuasi cagar budaya"
+git commit -m "Archaeonomics: kalkulator valuasi cagar budaya"
 git branch -M main
 git remote add origin https://github.com/<username>/<nama-repo>.git
 git push -u origin main
