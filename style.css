@@ -81,6 +81,10 @@ input{ font-family:inherit; }
   font-family:var(--font-display); font-weight:700; font-size:1.05rem;
 }
 .wordmark-mark{ font-size:1.2em; }
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
 
 .pillnav{ display:flex; gap:8px; }
 .pill{
