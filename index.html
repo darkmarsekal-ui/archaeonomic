@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cagarnomics — Kalkulator Nilai Ekonomi Cagar Budaya</title>
+<meta name="description" content="Hitung nilai ekonomi cagar budaya pakai Travel Cost Method, Contingent Valuation Method, dan Hedonic Pricing Method — langsung di browser, gratis, open source.">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎟️</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ TOP NAV ============ -->
+<header class="topbar">
+  <a href="#home" class="wordmark" data-route="home">
+    <span class="wordmark-mark">🎟️</span>
+    <span>Cagarnomics</span>
+  </a>
+
+  <nav class="pillnav" aria-label="Navigasi metode">
+    <a href="#tcm" class="pill pill-tcm" data-route="tcm"><svg class="icon" viewBox="0 0 24 24"><path d="M4 17h1l1.5-5h11L19 17h1M6.5 12L8 6h8l1.5 6M8 17.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm12 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/></svg>TCM</a>
+    <a href="#cvm" class="pill pill-cvm" data-route="cvm"><svg class="icon" viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-3.5-6.6M21 5v5h-5"/><path d="M9 12h6M9 9h6M9 15h4" stroke-linecap="round"/></svg>CVM</a>
+    <a href="#hpm" class="pill pill-hpm" data-route="hpm"><svg class="icon" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 10v9.5h13V10" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 19.5V14h5v5.5"/></svg>HPM</a>
+  </nav>
+
+  <button class="btn btn-ghost btn-start" data-route="tcm" onclick="location.hash='tcm'">Mulai hitung →</button>
+</header>
+
+<main id="app">
+
+<!-- ============ HOME ============ -->
+<section id="home" class="view view-home">
+
+  <section class="hero">
+    <p class="eyebrow">kalkulator nilai ekonomi · open source di GitHub</p>
+    <h1 class="hero-title">Warisan nggak ada<br>harganya. <span class="hl">Tapi bukan berarti<br>nggak bisa dihitung.</span></h1>
+    <p class="hero-sub">Cagarnomics bantu kamu mengestimasi nilai ekonomi candi, museum, situs, atau kawasan cagar budaya pakai tiga pendekatan ekonomi yang biasa dipakai peneliti: <strong>Travel Cost</strong>, <strong>Contingent Valuation</strong>, dan <strong>Hedonic Pricing</strong>. Masukin data kamu, langsung dapat angkanya.</p>
+    <div class="hero-cta">
+      <a href="#tcm" class="btn btn-primary">Pilih metode & mulai</a>
+      <a href="#tentang" class="btn btn-text">kok bisa dihitung? ↓</a>
+    </div>
+
+    <div class="ticket-stack" aria-hidden="true">
+      <div class="mini-ticket mt-tcm">
+        <span class="mt-code">TCM · 01</span>
+        <span class="mt-label">Travel Cost Method</span>
+      </div>
+      <div class="mini-ticket mt-cvm">
+        <span class="mt-code">CVM · 02</span>
+        <span class="mt-label">Contingent Valuation</span>
+      </div>
+      <div class="mini-ticket mt-hpm">
+        <span class="mt-code">HPM · 03</span>
+        <span class="mt-label">Hedonic Pricing</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="tentang" class="section-block">
+    <p class="eyebrow">kenapa perlu dihitung</p>
+    <h2 class="section-title">Situs cagar budaya sering kalah <br class="only-desktop">di rapat anggaran</h2>
+    <p class="section-lead">Nilai historis dan budaya itu nyata, tapi nggak muncul di neraca. Akibatnya, anggaran pemeliharaan cagar budaya gampang kalah dibanding proyek yang "kelihatan" untungnya. Valuasi ekonomi mengubah nilai yang nggak kelihatan itu jadi angka rupiah yang bisa dipakai buat advokasi, studi kelayakan, atau bahan negosiasi anggaran.</p>
+
+    <div class="fact-grid">
+      <div class="fact-card">
+        <span class="fact-num">Rp</span>
+        <p>Manfaat rekreasi & non-pakai punya nilai ekonomi, walau tidak diperjualbelikan di pasar mana pun.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-num">3×</span>
+        <p>Tiga metode di sini saling melengkapi — tiap metode menangkap sisi nilai yang berbeda.</p>
+      </div>
+      <div class="fact-card">
+        <span class="fact-num">100%</span>
+        <p>Semua kalkulasi berjalan di browser kamu sendiri. Tidak ada data yang dikirim ke server mana pun.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block section-methods">
+    <p class="eyebrow">tiga lensa, satu nilai</p>
+    <h2 class="section-title">Pilih pendekatan yang cocok<br class="only-desktop"> sama data yang kamu punya</h2>
+
+    <div class="method-cards">
+      <a href="#tcm" class="method-card mc-tcm">
+        <div class="mc-top">
+          <svg class="mc-icon" viewBox="0 0 24 24"><path d="M4 17h1l1.5-5h11L19 17h1M6.5 12L8 6h8l1.5 6M8 17.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm12 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/></svg>
+          <span class="mc-code">TCM</span>
+        </div>
+        <h3>Travel Cost Method</h3>
+        <p>Menilai situs lewat biaya & waktu yang rela dikeluarkan pengunjung untuk datang. Cocok kalau kamu punya data asal pengunjung per zona/wilayah.</p>
+        <span class="mc-go">Hitung dari data pengunjung →</span>
+      </a>
+
+      <a href="#cvm" class="method-card mc-cvm">
+        <div class="mc-top">
+          <svg class="mc-icon" viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-3.5-6.6M21 5v5h-5"/><path d="M9 12h6M9 9h6M9 15h4" stroke-linecap="round"/></svg>
+          <span class="mc-code">CVM</span>
+        </div>
+        <h3>Contingent Valuation</h3>
+        <p>Menilai lewat kesediaan membayar (WTP) hasil survei — cocok buat menangkap nilai non-pakai, seperti nilai eksistensi & warisan untuk generasi berikutnya.</p>
+        <span class="mc-go">Hitung dari hasil survei →</span>
+      </a>
+
+      <a href="#hpm" class="method-card mc-hpm">
+        <div class="mc-top">
+          <svg class="mc-icon" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 10v9.5h13V10" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 19.5V14h5v5.5"/></svg>
+          <span class="mc-code">HPM</span>
+        </div>
+        <h3>Hedonic Pricing</h3>
+        <p>Menilai lewat pengaruh kedekatan ke situs terhadap harga properti sekitar. Cocok kalau kamu punya data transaksi properti di sekitar kawasan.</p>
+        <span class="mc-go">Hitung dari data properti →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section-block section-cta-final">
+    <h2 class="section-title">Data kamu udah siap?</h2>
+    <p class="section-lead">Nggak punya data lengkap juga nggak apa — tiap kalkulator udah diisi contoh angka biar kamu bisa langsung lihat cara kerjanya sebelum ganti dengan data asli.</p>
+    <a href="#tcm" class="btn btn-primary btn-lg">Mulai dari Travel Cost →</a>
+  </section>
+
+</section>
+
+<!-- ============ TCM ============ -->
+<section id="tcm" class="view view-calc">
+  <a href="#home" class="back-link">← kembali ke beranda</a>
+
+  <div class="ticket ticket-tcm">
+    <div class="ticket-head">
+      <div class="ticket-head-left">
+        <span class="ticket-code">TCM · 01</span>
+        <h2>Travel Cost Method</h2>
+        <p>Estimasi nilai rekreasi situs lewat biaya perjalanan &amp; surplus konsumen zonal.</p>
+      </div>
+      <button class="btn btn-ghost btn-info" data-toggle="tcm-info">Cara kerja metode ini ⓘ</button>
+    </div>
+    <div class="perforation" aria-hidden="true"></div>
+
+    <div class="ticket-body">
+
+      <div class="info-panel" id="tcm-info">
+        <p><strong>Logikanya:</strong> orang yang rela menempuh jarak & biaya lebih besar untuk berkunjung menunjukkan situs itu punya nilai yang besar buat mereka — walau tiket masuknya murah atau gratis.</p>
+        <ol>
+          <li>Isi data per <em>zona asal</em> pengunjung (misalnya per kabupaten/kota): populasi, jumlah pengunjung/tahun, jarak, dan waktu tempuh.</li>
+          <li>Kalkulator menghitung <em>biaya perjalanan</em> tiap zona, lalu meregresikannya terhadap <em>tingkat kunjungan</em> untuk mendapat kurva permintaan.</li>
+          <li>Kurva itu disimulasikan seolah tiket masuk dinaikkan bertahap — surplus konsumen dihitung sebagai luas area di bawah kurva permintaan tersebut.</li>
+        </ol>
+        <p class="formula">TC<sub>i</sub> = (jarak<sub>i</sub> × biaya/km) + (waktu<sub>i</sub> × nilai waktu) + tiket masuk</p>
+      </div>
+
+      <div class="field-row">
+        <label class="field">
+          <span>Biaya transportasi (Rp / km)</span>
+          <input type="text" inputmode="numeric" id="tcm-costkm" value="3.000" class="rp-input">
+        </label>
+        <label class="field">
+          <span>Nilai waktu (Rp / jam)</span>
+          <input type="text" inputmode="numeric" id="tcm-timeval" value="25.000" class="rp-input">
+        </label>
+        <label class="field">
+          <span>Tiket masuk saat ini (Rp)</span>
+          <input type="text" inputmode="numeric" id="tcm-fee" value="15.000" class="rp-input">
+        </label>
+        <label class="field">
+          <span>Kenaikan simulasi tiket (Rp)</span>
+          <input type="text" inputmode="numeric" id="tcm-step" value="10.000" class="rp-input">
+        </label>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table" id="tcm-table">
+          <thead>
+            <tr>
+              <th>Zona asal</th>
+              <th>Populasi zona</th>
+              <th>Pengunjung / tahun</th>
+              <th>Jarak p.p. (km)</th>
+              <th>Waktu tempuh p.p. (jam)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tcm-tbody"></tbody>
+        </table>
+      </div>
+      <div class="table-actions">
+        <button class="btn btn-dashed" id="tcm-addrow">+ tambah zona</button>
+        <button class="btn btn-text" id="tcm-reset">muat ulang contoh</button>
+      </div>
+
+      <button class="btn btn-primary btn-lg btn-calc" id="tcm-calc">Hitung nilai TCM →</button>
+
+      <div class="result-panel" id="tcm-result" hidden>
+        <div class="receipt">
+          <p class="receipt-title">Hasil estimasi — Travel Cost Method</p>
+          <div class="receipt-line"><span>Total pengunjung / tahun</span><b id="tcm-r-visitors">–</b></div>
+          <div class="receipt-line"><span>Pengeluaran langsung pengunjung / tahun</span><b id="tcm-r-expend">–</b></div>
+          <div class="receipt-line receipt-highlight"><span>Surplus konsumen (nilai rekreasi) / tahun</span><b id="tcm-r-cs">–</b></div>
+          <div class="receipt-line"><span>Titik jenuh (biaya tambahan max.)</span><b id="tcm-r-choke">–</b></div>
+          <p class="receipt-note" id="tcm-r-note"></p>
+        </div>
+        <div class="chart-card">
+          <p class="chart-title">Kurva permintaan simulasi (kenaikan tiket vs total kunjungan)</p>
+          <canvas id="tcm-chart" height="220"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CVM ============ -->
+<section id="cvm" class="view view-calc">
+  <a href="#home" class="back-link">← kembali ke beranda</a>
+
+  <div class="ticket ticket-cvm">
+    <div class="ticket-head">
+      <div class="ticket-head-left">
+        <span class="ticket-code">CVM · 02</span>
+        <h2>Contingent Valuation Method</h2>
+        <p>Estimasi nilai lewat kesediaan membayar (Willingness to Pay) hasil survei.</p>
+      </div>
+      <button class="btn btn-ghost btn-info" data-toggle="cvm-info">Cara kerja metode ini ⓘ</button>
+    </div>
+    <div class="perforation" aria-hidden="true"></div>
+
+    <div class="ticket-body">
+      <div class="info-panel" id="cvm-info">
+        <p><strong>Logikanya:</strong> tanya langsung ke orang, "berapa rupiah maksimum yang rela kamu bayar per tahun untuk pelestarian situs ini?" — lalu nilai jawabannya diagregasi ke populasi penerima manfaat.</p>
+        <p>Ada dua model input survei di bawah, pilih sesuai desain kuesioner kamu:</p>
+        <ol>
+          <li><strong>Terbuka (open-ended):</strong> responden langsung menyebut angka WTP-nya.</li>
+          <li><strong>Referendum (dichotomous choice):</strong> tiap responden cuma dikasih satu nilai tawaran lalu jawab "ya/tidak" — lebih realistis, dianalisis pakai regresi logistik.</li>
+        </ol>
+      </div>
+
+      <div class="segmented" id="cvm-mode">
+        <button class="seg-btn is-active" data-mode="open">Survei terbuka</button>
+        <button class="seg-btn" data-mode="dc">Referendum (ya/tidak)</button>
+      </div>
+
+      <!-- OPEN ENDED -->
+      <div class="cvm-panel" id="cvm-open">
+        <div class="field-row">
+          <label class="field field-grow">
+            <span>Jumlah populasi penerima manfaat (rumah tangga)</span>
+            <input type="text" inputmode="numeric" id="cvm-pop" value="120.000" class="rp-input">
+          </label>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="cvm-open-table">
+            <thead><tr><th>Responden</th><th>WTP per tahun (Rp)</th><th></th></tr></thead>
+            <tbody id="cvm-open-tbody"></tbody>
+          </table>
+        </div>
+        <div class="table-actions">
+          <button class="btn btn-dashed" id="cvm-open-addrow">+ tambah responden</button>
+          <button class="btn btn-text" id="cvm-open-reset">muat ulang contoh</button>
+        </div>
+      </div>
+
+      <!-- DICHOTOMOUS CHOICE -->
+      <div class="cvm-panel" id="cvm-dc" hidden>
+        <div class="field-row">
+          <label class="field field-grow">
+            <span>Jumlah populasi penerima manfaat (rumah tangga)</span>
+            <input type="text" inputmode="numeric" id="cvm-dc-pop" value="120.000" class="rp-input">
+          </label>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="cvm-dc-table">
+            <thead><tr><th>Nilai tawaran / tahun (Rp)</th><th>Jumlah jawab "Ya"</th><th>Jumlah jawab "Tidak"</th><th></th></tr></thead>
+            <tbody id="cvm-dc-tbody"></tbody>
+          </table>
+        </div>
+        <div class="table-actions">
+          <button class="btn btn-dashed" id="cvm-dc-addrow">+ tambah tingkat tawaran</button>
+          <button class="btn btn-text" id="cvm-dc-reset">muat ulang contoh</button>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-lg btn-calc" id="cvm-calc">Hitung nilai CVM →</button>
+
+      <div class="result-panel" id="cvm-result" hidden>
+        <div class="receipt">
+          <p class="receipt-title">Hasil estimasi — Contingent Valuation Method</p>
+          <div class="receipt-line"><span>Rata-rata WTP / rumah tangga / tahun</span><b id="cvm-r-mean">–</b></div>
+          <div class="receipt-line"><span>Median WTP / rumah tangga / tahun</span><b id="cvm-r-median">–</b></div>
+          <div class="receipt-line" id="cvm-r-ci-row"><span>Selang kepercayaan 95%</span><b id="cvm-r-ci">–</b></div>
+          <div class="receipt-line receipt-highlight"><span>Total nilai ekonomi (agregat) / tahun</span><b id="cvm-r-total">–</b></div>
+          <p class="receipt-note" id="cvm-r-note"></p>
+        </div>
+        <div class="chart-card">
+          <p class="chart-title" id="cvm-chart-title">Sebaran nilai WTP</p>
+          <canvas id="cvm-chart" height="220"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HPM ============ -->
+<section id="hpm" class="view view-calc">
+  <a href="#home" class="back-link">← kembali ke beranda</a>
+
+  <div class="ticket ticket-hpm">
+    <div class="ticket-head">
+      <div class="ticket-head-left">
+        <span class="ticket-code">HPM · 03</span>
+        <h2>Hedonic Pricing Method</h2>
+        <p>Estimasi nilai lewat pengaruh kedekatan situs terhadap harga properti sekitar.</p>
+      </div>
+      <button class="btn btn-ghost btn-info" data-toggle="hpm-info">Cara kerja metode ini ⓘ</button>
+    </div>
+    <div class="perforation" aria-hidden="true"></div>
+
+    <div class="ticket-body">
+      <div class="info-panel" id="hpm-info">
+        <p><strong>Logikanya:</strong> harga properti dipengaruhi banyak atribut — luas bangunan, usia bangunan, dan jaraknya ke situs cagar budaya. Kalau makin dekat ke situs makin mahal (ceteris paribus), selisih harga itu mencerminkan nilai implisit dari kedekatan dengan cagar budaya.</p>
+        <p class="formula">Harga = β₀ + β₁·Luas + β₂·Jarak + β₃·Usia + ε</p>
+        <p>Kalkulator ini menjalankan regresi linear berganda (OLS) atas data transaksi properti yang kamu masukkan, lalu menyorot koefisien jarak (β₂) sebagai nilai implisit kedekatan dengan situs.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table" id="hpm-table">
+          <thead>
+            <tr>
+              <th>Properti</th>
+              <th>Harga transaksi (Rp)</th>
+              <th>Luas bangunan (m²)</th>
+              <th>Jarak ke situs (km)</th>
+              <th>Usia bangunan (tahun)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="hpm-tbody"></tbody>
+        </table>
+      </div>
+      <div class="table-actions">
+        <button class="btn btn-dashed" id="hpm-addrow">+ tambah properti</button>
+        <button class="btn btn-text" id="hpm-reset">muat ulang contoh</button>
+      </div>
+
+      <button class="btn btn-primary btn-lg btn-calc" id="hpm-calc">Hitung nilai HPM →</button>
+
+      <div class="result-panel" id="hpm-result" hidden>
+        <div class="receipt">
+          <p class="receipt-title">Hasil estimasi — Hedonic Pricing Method</p>
+          <div class="receipt-line"><span>R² model (kecocokan model)</span><b id="hpm-r-r2">–</b></div>
+          <div class="receipt-line"><span>Efek luas bangunan (β₁)</span><b id="hpm-r-b1">–</b></div>
+          <div class="receipt-line receipt-highlight"><span>Nilai implisit kedekatan situs (β₂ / km)</span><b id="hpm-r-b2">–</b></div>
+          <div class="receipt-line"><span>Efek usia bangunan (β₃)</span><b id="hpm-r-b3">–</b></div>
+          <div class="receipt-line"><span>Konstanta (β₀)</span><b id="hpm-r-b0">–</b></div>
+          <p class="receipt-note" id="hpm-r-note"></p>
+        </div>
+        <div class="chart-card">
+          <p class="chart-title">Harga aktual vs jarak ke situs</p>
+          <canvas id="hpm-chart" height="220"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="wordmark">
+      <span class="wordmark-mark">🎟️</span><span>Cagarnomics</span>
+    </div>
+    <p>Alat bantu estimasi cepat untuk riset, tugas kuliah, atau bahan advokasi awal. Bukan pengganti studi valuasi profesional / jasa appraisal resmi — untuk keputusan anggaran besar, tetap konsultasikan ke ahli valuasi ekonomi lingkungan/budaya.</p>
+  </div>
+  <div class="footer-bottom">
+    <span>Metode berbasis literatur ekonomi lingkungan klasik: Clawson–Knetsch (TCM), Mitchell–Carson (CVM), Rosen (HPM).</span>
+    <span>Dibuat buat dipakai & dimodifikasi bebas — cek <code>README.md</code> di repo.</span>
+  </div>
+</footer>
+
+<nav class="bottomnav" aria-label="Navigasi cepat">
+  <a href="#home" data-route="home"><svg class="icon" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 10v9.5h13V10" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Home</span></a>
+  <a href="#tcm" data-route="tcm"><svg class="icon" viewBox="0 0 24 24"><path d="M4 17h1l1.5-5h11L19 17h1M6.5 12L8 6h8l1.5 6M8 17.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm12 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/></svg><span>TCM</span></a>
+  <a href="#cvm" data-route="cvm"><svg class="icon" viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-3.5-6.6M21 5v5h-5"/><path d="M9 12h6M9 9h6M9 15h4" stroke-linecap="round"/></svg><span>CVM</span></a>
+  <a href="#hpm" data-route="hpm"><svg class="icon" viewBox="0 0 24 24"><path d="M9.5 19.5V14h5v5.5M3 11.5 12 4l9 7.5"/></svg><span>HPM</span></a>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/tcm.js"></script>
+<script src="js/cvm.js"></script>
+<script src="js/hpm.js"></script>
+</body>
+</html>
