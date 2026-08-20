@@ -407,3 +407,9 @@ input{ font-family:inherit; }
   object-fit: contain;
   border-radius: 6px;
 }
+
+.pill img.icon, .bottomnav img.icon, .mc-icon.img-icon{
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
